@@ -130,6 +130,39 @@
             z-index: 10;
         }
         
+        /* Fixed positions for ARE page */
+        #page-are .main-text[data-index="0"] {
+            left: 60px;
+            top: 140px;
+        }
+        
+        #page-are .main-text[data-index="1"] {
+            right: 60px;
+            top: 140px;
+        }
+        
+        #page-are .main-text[data-index="2"] {
+            left: 60px;
+            bottom: 60px;
+        }
+        
+        /* Fixed positions for IS page */
+        #page-is .main-text[data-index="0"] {
+            left: 60px;
+            top: 140px;
+        }
+        
+        #page-is .main-text[data-index="1"] {
+            right: 60px;
+            top: 140px;
+        }
+        
+        #page-is .main-text[data-index="2"] {
+            left: 50%;
+            bottom: 60px;
+            transform: translateX(-50%);
+        }
+        
         .line {
             display: flex;
             justify-content: space-between;
@@ -307,11 +340,20 @@
         
         let isDiscoMode = false;
         
-        // Exclusion zones
+        // Flee cursor settings for disco page only
         const PADDING = 60;
         const TEXT_WIDTH = 420;
-        const TEXT_HEIGHT_ESTIMATE = 400;
+        const TEXT_HEIGHT_ESTIMATE = 100;
         const SEPARATION_BUFFER = 80;
+        
+        let mouseX = 0, mouseY = 0;
+        let discoTexts = [];
+        let discoVelocities = [];
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
         
         function getExclusionZones() {
             const headerRect = header.getBoundingClientRect();
@@ -358,73 +400,22 @@
             return { x, y, w, h };
         }
         
-        // Flee cursor for both pages
-        let mouseX = 0, mouseY = 0;
-        let allTexts = [];
-        let allVelocities = [];
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-        
-        function initPagePhysics(page) {
-            const texts = Array.from(page.querySelectorAll('.main-text'));
-            const velocities = texts.map(() => ({ vx: 0, vy: 0 }));
+        function initDiscoPhysics() {
+            discoTexts = Array.from(discoPage.querySelectorAll('.main-text'));
+            discoVelocities = discoTexts.map(() => ({ vx: 0, vy: 0 }));
             
             const rects = [];
-            texts.forEach((text, i) => {
+            discoTexts.forEach((text, i) => {
                 const pos = getValidPosition(rects, text);
                 rects.push(pos);
                 text.style.left = pos.x + 'px';
                 text.style.top = pos.y + 'px';
                 text.style.transform = 'none';
-                text.style.transition = 'none';
             });
-            
-            return { texts, velocities };
-        }
-        
-        function initAllPhysics() {
-            const arePage = document.getElementById('page-are');
-            const isPage = document.getElementById('page-is');
-            const discoPage = document.getElementById('disco-page');
-            
-            const areData = initPagePhysics(arePage);
-            const isData = initPagePhysics(isPage);
-            const discoData = initPagePhysics(discoPage);
-            
-            allTexts = {
-                are: areData.texts,
-                is: isData.texts,
-                disco: discoData.texts
-            };
-            allVelocities = {
-                are: areData.velocities,
-                is: isData.velocities,
-                disco: discoData.velocities
-            };
         }
         
         function fleeLoop() {
-            let activePage = document.querySelector('.page.active');
-            let pageKey = null;
-            
-            if (activePage) {
-                pageKey = activePage.id === 'page-are' ? 'are' : 'is';
-            } else if (discoPage.classList.contains('active')) {
-                pageKey = 'disco';
-            }
-            
-            if (!pageKey) {
-                requestAnimationFrame(fleeLoop);
-                return;
-            }
-            
-            const texts = allTexts[pageKey];
-            const velocities = allVelocities[pageKey];
-            
-            if (!texts || !velocities) {
+            if (!isDiscoMode || !discoPage.classList.contains('active')) {
                 requestAnimationFrame(fleeLoop);
                 return;
             }
@@ -432,7 +423,7 @@
             const exclusions = getExclusionZones();
             const currentRects = [];
             
-            texts.forEach((text, i) => {
+            discoTexts.forEach((text, i) => {
                 let x = parseFloat(text.style.left) || 0;
                 let y = parseFloat(text.style.top) || 0;
                 const rect = text.getBoundingClientRect();
@@ -449,25 +440,25 @@
                 const fleeRadius = 300;
                 if (dist < fleeRadius && dist > 0) {
                     const force = (fleeRadius - dist) / fleeRadius * 2.5;
-                    velocities[i].vx += (dx / dist) * force;
-                    velocities[i].vy += (dy / dist) * force;
+                    discoVelocities[i].vx += (dx / dist) * force;
+                    discoVelocities[i].vy += (dy / dist) * force;
                 }
                 
-                velocities[i].vx *= 0.92;
-                velocities[i].vy *= 0.92;
+                discoVelocities[i].vx *= 0.92;
+                discoVelocities[i].vy *= 0.92;
                 
-                x += velocities[i].vx;
-                y += velocities[i].vy;
+                x += discoVelocities[i].vx;
+                y += discoVelocities[i].vy;
                 
                 const minX = PADDING;
                 const minY = 140;
                 const maxX = window.innerWidth - w - PADDING;
                 const maxY = window.innerHeight - h - PADDING;
                 
-                if (x < minX) { x = minX; velocities[i].vx *= -0.5; }
-                if (x > maxX) { x = maxX; velocities[i].vx *= -0.5; }
-                if (y < minY) { y = minY; velocities[i].vy *= -0.5; }
-                if (y > maxY) { y = maxY; velocities[i].vy *= -0.5; }
+                if (x < minX) { x = minX; discoVelocities[i].vx *= -0.5; }
+                if (x > maxX) { x = maxX; discoVelocities[i].vx *= -0.5; }
+                if (y < minY) { y = minY; discoVelocities[i].vy *= -0.5; }
+                if (y > maxY) { y = maxY; discoVelocities[i].vy *= -0.5; }
                 
                 const candidate = { x, y, w, h };
                 const expandedCandidate = { 
@@ -484,8 +475,8 @@
                         const pushX = centerX - zoneCenterX;
                         const pushY = centerY - zoneCenterY;
                         const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
-                        velocities[i].vx += (pushX / pushDist) * 5;
-                        velocities[i].vy += (pushY / pushDist) * 5;
+                        discoVelocities[i].vx += (pushX / pushDist) * 5;
+                        discoVelocities[i].vy += (pushY / pushDist) * 5;
                     }
                 });
                 
@@ -503,8 +494,8 @@
                         const pushX = centerX - otherCenterX;
                         const pushY = centerY - otherCenterY;
                         const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
-                        velocities[i].vx += (pushX / pushDist) * 6;
-                        velocities[i].vy += (pushY / pushDist) * 6;
+                        discoVelocities[i].vx += (pushX / pushDist) * 6;
+                        discoVelocities[i].vy += (pushY / pushDist) * 6;
                     }
                 });
                 
@@ -569,10 +560,8 @@
                 discoPage.classList.add('active');
                 navBtn.textContent = 'HOME';
                 
-                // Reinitialize disco page physics
-                const discoData = initPagePhysics(discoPage);
-                allTexts.disco = discoData.texts;
-                allVelocities.disco = discoData.velocities;
+                // Initialize disco page physics
+                initDiscoPhysics();
             }
             initHoverEffects();
         });
@@ -602,15 +591,8 @@
         
         // Initialize
         window.addEventListener('load', () => {
-            initAllPhysics();
             initHoverEffects();
             fleeLoop();
-        });
-        
-        window.addEventListener('resize', () => {
-            if (!isDiscoMode) {
-                initAllPhysics();
-            }
         });
     </script>
 </body>
