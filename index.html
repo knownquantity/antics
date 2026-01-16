@@ -24,7 +24,7 @@
         }
         
         body.disco-mode {
-            background-color: #4B9CD3;
+            background-color: #FFB40F;
         }
         
         .header {
@@ -97,6 +97,8 @@
             color: #FFD700;
             border: none;
             padding: 15px 30px;
+            min-width: 140px;
+            text-align: center;
             font-family: 'Space Mono', 'Courier New', monospace;
             font-size: 18px;
             font-weight: 700;
@@ -111,7 +113,7 @@
         }
         
         body.disco-mode .nav-btn {
-            color: #4B9CD3;
+            color: #FFB40F;
         }
         
         .main-text {
@@ -169,202 +171,7 @@
         }
         
         .disco-page.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .disco-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .disco-ball {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #fff 0%, #ccc 25%, #fff 50%, #999 75%, #fff 100%);
-            border-radius: 50%;
-            position: relative;
-            animation: spin 4s linear infinite;
-            box-shadow: 
-                0 0 20px rgba(255,255,255,0.5),
-                inset 0 0 20px rgba(0,0,0,0.2);
-        }
-        
-        .disco-ball::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 50%;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 8px,
-                    rgba(0,0,0,0.1) 8px,
-                    rgba(0,0,0,0.1) 10px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent,
-                    transparent 8px,
-                    rgba(0,0,0,0.1) 8px,
-                    rgba(0,0,0,0.1) 10px
-                );
-        }
-        
-        .disco-string {
-            width: 2px;
-            height: 60px;
-            background: #000;
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        @keyframes spin {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-        
-        .stick-figure {
-            width: 100px;
-            height: 150px;
-            position: relative;
-            animation: dance 0.5s ease-in-out infinite alternate;
-        }
-        
-        @keyframes dance {
-            0% { transform: translateY(0) rotate(-5deg); }
-            100% { transform: translateY(-10px) rotate(5deg); }
-        }
-        
-        .stick-figure .head {
-            width: 30px;
-            height: 30px;
-            border: 3px solid #000;
-            border-radius: 50%;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            background: transparent;
-        }
-        
-        .stick-figure .body {
-            width: 3px;
-            height: 50px;
-            background: #000;
-            position: absolute;
-            top: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .stick-figure .arm-left {
-            width: 40px;
-            height: 3px;
-            background: #000;
-            position: absolute;
-            top: 45px;
-            left: 10px;
-            transform-origin: right center;
-            animation: arm-left 0.5s ease-in-out infinite alternate;
-        }
-        
-        .stick-figure .arm-right {
-            width: 40px;
-            height: 3px;
-            background: #000;
-            position: absolute;
-            top: 45px;
-            right: 10px;
-            transform-origin: left center;
-            animation: arm-right 0.5s ease-in-out infinite alternate;
-        }
-        
-        @keyframes arm-left {
-            0% { transform: rotate(-30deg); }
-            100% { transform: rotate(30deg); }
-        }
-        
-        @keyframes arm-right {
-            0% { transform: rotate(30deg); }
-            100% { transform: rotate(-30deg); }
-        }
-        
-        .stick-figure .leg-left {
-            width: 3px;
-            height: 45px;
-            background: #000;
-            position: absolute;
-            top: 80px;
-            left: 35px;
-            transform-origin: top center;
-            animation: leg-left 0.5s ease-in-out infinite alternate;
-        }
-        
-        .stick-figure .leg-right {
-            width: 3px;
-            height: 45px;
-            background: #000;
-            position: absolute;
-            top: 80px;
-            right: 35px;
-            transform-origin: top center;
-            animation: leg-right 0.5s ease-in-out infinite alternate;
-        }
-        
-        @keyframes leg-left {
-            0% { transform: rotate(-20deg); }
-            100% { transform: rotate(20deg); }
-        }
-        
-        @keyframes leg-right {
-            0% { transform: rotate(20deg); }
-            100% { transform: rotate(-20deg); }
-        }
-        
-        /* Disco light rays */
-        .disco-lights {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            pointer-events: none;
-            opacity: 0.3;
-        }
-        
-        .light-ray {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200px;
-            height: 4px;
-            transform-origin: left center;
-            animation: ray-pulse 1s ease-in-out infinite;
-        }
-        
-        .light-ray:nth-child(1) { background: #ff6b6b; transform: rotate(0deg); animation-delay: 0s; }
-        .light-ray:nth-child(2) { background: #4ecdc4; transform: rotate(45deg); animation-delay: 0.125s; }
-        .light-ray:nth-child(3) { background: #ffe66d; transform: rotate(90deg); animation-delay: 0.25s; }
-        .light-ray:nth-child(4) { background: #95e1d3; transform: rotate(135deg); animation-delay: 0.375s; }
-        .light-ray:nth-child(5) { background: #f38181; transform: rotate(180deg); animation-delay: 0.5s; }
-        .light-ray:nth-child(6) { background: #aa96da; transform: rotate(225deg); animation-delay: 0.625s; }
-        .light-ray:nth-child(7) { background: #fcbad3; transform: rotate(270deg); animation-delay: 0.75s; }
-        .light-ray:nth-child(8) { background: #a8d8ea; transform: rotate(315deg); animation-delay: 0.875s; }
-        
-        @keyframes ray-pulse {
-            0%, 100% { opacity: 0.3; width: 150px; }
-            50% { opacity: 0.8; width: 200px; }
+            display: contents;
         }
         
         @media (max-width: 768px) {
@@ -484,28 +291,9 @@
     </div>
 
     <div class="disco-page" id="disco-page">
-        <div class="disco-lights">
-            <div class="light-ray"></div>
-            <div class="light-ray"></div>
-            <div class="light-ray"></div>
-            <div class="light-ray"></div>
-            <div class="light-ray"></div>
-            <div class="light-ray"></div>
-            <div class="light-ray"></div>
-            <div class="light-ray"></div>
-        </div>
-        <div class="disco-container">
-            <div class="disco-ball">
-                <div class="disco-string"></div>
-            </div>
-            <div class="stick-figure">
-                <div class="head"></div>
-                <div class="body"></div>
-                <div class="arm-left"></div>
-                <div class="arm-right"></div>
-                <div class="leg-left"></div>
-                <div class="leg-right"></div>
-            </div>
+        <div class="main-text" data-index="0">
+            <div class="line"><span class="word">COMING</span><span class="ghost">GNIMOC</span></div>
+            <div class="line"><span class="word">SOON</span><span class="ghost">NOOS</span></div>
         </div>
     </div>
 
@@ -600,33 +388,39 @@
         function initAllPhysics() {
             const arePage = document.getElementById('page-are');
             const isPage = document.getElementById('page-is');
+            const discoPage = document.getElementById('disco-page');
             
             const areData = initPagePhysics(arePage);
             const isData = initPagePhysics(isPage);
+            const discoData = initPagePhysics(discoPage);
             
             allTexts = {
                 are: areData.texts,
-                is: isData.texts
+                is: isData.texts,
+                disco: discoData.texts
             };
             allVelocities = {
                 are: areData.velocities,
-                is: isData.velocities
+                is: isData.velocities,
+                disco: discoData.velocities
             };
         }
         
         function fleeLoop() {
-            if (isDiscoMode) {
+            let activePage = document.querySelector('.page.active');
+            let pageKey = null;
+            
+            if (activePage) {
+                pageKey = activePage.id === 'page-are' ? 'are' : 'is';
+            } else if (discoPage.classList.contains('active')) {
+                pageKey = 'disco';
+            }
+            
+            if (!pageKey) {
                 requestAnimationFrame(fleeLoop);
                 return;
             }
             
-            const activePage = document.querySelector('.page.active');
-            if (!activePage) {
-                requestAnimationFrame(fleeLoop);
-                return;
-            }
-            
-            const pageKey = activePage.id === 'page-are' ? 'are' : 'is';
             const texts = allTexts[pageKey];
             const velocities = allVelocities[pageKey];
             
@@ -774,12 +568,23 @@
                 pages.forEach(p => p.classList.remove('active'));
                 discoPage.classList.add('active');
                 navBtn.textContent = 'HOME';
+                
+                // Reinitialize disco page physics
+                const discoData = initPagePhysics(discoPage);
+                allTexts.disco = discoData.texts;
+                allVelocities.disco = discoData.velocities;
             }
+            initHoverEffects();
         });
         
         // Hover effects
         function initHoverEffects() {
-            document.querySelectorAll('.page.active .main-text').forEach(textBlock => {
+            const activeContainers = [
+                ...document.querySelectorAll('.page.active .main-text'),
+                ...document.querySelectorAll('.disco-page.active .main-text')
+            ];
+            
+            activeContainers.forEach(textBlock => {
                 const lines = textBlock.querySelectorAll('.line');
                 
                 textBlock.onmouseleave = () => {
