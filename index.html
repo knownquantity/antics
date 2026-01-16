@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANTICS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #FFD700;
+            min-height: 100vh;
+            font-family: 'Space Mono', 'Courier New', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #000;
+        }
+        
+        .main-text {
+            position: absolute;
+            left: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            line-height: 1.4;
+            color: #000;
+        }
+        
+        .line {
+            display: flex;
+            gap: 0;
+        }
+        
+        .word {
+            margin-right: 1.5em;
+        }
+        
+        .ghost {
+            color: rgba(0, 0, 0, 0.15);
+            transform: scaleX(-1);
+            display: inline-block;
+        }
+        
+        /* Staggered layout like the reference */
+        .line:nth-child(1) { padding-left: 0; }
+        .line:nth-child(2) { padding-left: 40px; }
+        .line:nth-child(3) { padding-left: 0; }
+        .line:nth-child(4) { padding-left: 60px; }
+        .line:nth-child(5) { padding-left: 20px; }
+        .line:nth-child(6) { padding-left: 80px; }
+        .line:nth-child(7) { padding-left: 0; }
+        .line:nth-child(8) { padding-left: 40px; }
+        .line:nth-child(9) { padding-left: 100px; }
+        
+        @media (max-width: 768px) {
+            .logo {
+                top: 20px;
+                right: 20px;
+                font-size: 18px;
+            }
+            
+            .main-text {
+                left: 30px;
+                font-size: 14px;
+            }
+            
+            .line:nth-child(2) { padding-left: 20px; }
+            .line:nth-child(4) { padding-left: 30px; }
+            .line:nth-child(5) { padding-left: 10px; }
+            .line:nth-child(6) { padding-left: 40px; }
+            .line:nth-child(8) { padding-left: 20px; }
+            .line:nth-child(9) { padding-left: 50px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">ANTICS</div>
+    
+    <div class="main-text">
+        <div class="line"><span class="word">SMALL</span><span class="ghost">LLAMS</span></div>
+        <div class="line"><span class="word">DISRUPTIONS</span></div>
+        <div class="line"><span class="word">THAT</span><span class="ghost">TAHT</span></div>
+        <div class="line"><span class="word">CREATE</span></div>
+        <div class="line"><span class="word">NEW</span><span class="ghost">WEN</span></div>
+        <div class="line"><span class="word">SOCIAL</span></div>
+        <div class="line"><span class="word">OR</span><span class="ghost">RO</span></div>
+        <div class="line"><span class="word">CREATIVE</span></div>
+        <div class="line"><span class="word">OUTCOMES</span></div>
+    </div>
+</body>
+</html>
