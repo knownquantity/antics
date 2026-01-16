@@ -126,47 +126,44 @@
             letter-spacing: 0.05em;
             line-height: 1.4;
             color: #000;
-            width: 340px;
             z-index: 10;
         }
         
-        /* Fixed positions for ARE page */
+        /* ARE page: Left column has sentences 0 and 2, Right column has sentence 1 */
         #page-are .main-text[data-index="0"] {
             left: 60px;
-            top: 140px;
+            top: 130px;
         }
         
         #page-are .main-text[data-index="1"] {
             right: 60px;
-            top: 140px;
+            top: 130px;
         }
         
         #page-are .main-text[data-index="2"] {
-            right: 60px;
-            bottom: 60px;
+            left: 60px;
+            top: 400px;
         }
         
-        /* Fixed positions for IS page */
+        /* IS page: sentence 0 top-left, sentence 1 top-right, sentence 2 bottom-left */
         #page-is .main-text[data-index="0"] {
             left: 60px;
-            top: 140px;
+            top: 130px;
         }
         
         #page-is .main-text[data-index="1"] {
-            left: 450px;
-            bottom: 140px;
+            right: 60px;
+            top: 130px;
         }
         
         #page-is .main-text[data-index="2"] {
-            right: 60px;
-            top: 140px;
-            width: 380px;
+            left: 60px;
+            top: 320px;
         }
         
         .line {
             display: flex;
-            justify-content: space-between;
-            width: 100%;
+            gap: 1em;
             transition: transform 0.15s ease-out, font-size 0.15s ease-out;
             transform-origin: left center;
         }
