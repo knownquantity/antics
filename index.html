@@ -81,8 +81,6 @@
         
         .main-text {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
             display: flex;
             flex-direction: column;
             gap: 4px;
@@ -94,20 +92,39 @@
             width: 280px;
         }
         
-        .left-text {
+        /* ARE page positions - scattered */
+        .are-pos-1 {
             left: 60px;
+            top: 140px;
         }
         
-        .right-text {
-            left: 380px;
+        .are-pos-2 {
+            right: 80px;
+            bottom: 60px;
         }
         
-        .center-text {
-            left: 340px;
+        .are-pos-3 {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
         
-        .right-text-is {
-            left: 620px;
+        /* IS page positions - scattered */
+        .is-pos-1 {
+            left: 60px;
+            bottom: 80px;
+        }
+        
+        .is-pos-2 {
+            left: 50%;
+            top: 140px;
+            transform: translateX(-50%);
+        }
+        
+        .is-pos-3 {
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
         }
         
         .line {
@@ -141,23 +158,52 @@
         }
         
         @media (max-width: 768px) {
-            .logo {
+            .header {
                 top: 20px;
                 right: 20px;
+            }
+            
+            .logo {
                 font-size: 32px;
+            }
+            
+            .toggle {
+                font-size: 14px;
             }
             
             .main-text {
                 font-size: 12px;
-                width: 180px;
+                width: 160px;
             }
             
-            .left-text {
+            .are-pos-1 {
                 left: 20px;
+                top: 100px;
             }
             
-            .right-text {
-                left: 220px;
+            .are-pos-2 {
+                right: 20px;
+                bottom: 40px;
+            }
+            
+            .are-pos-3 {
+                left: 50%;
+                top: 50%;
+            }
+            
+            .is-pos-1 {
+                left: 20px;
+                bottom: 40px;
+            }
+            
+            .is-pos-2 {
+                left: 50%;
+                top: 100px;
+            }
+            
+            .is-pos-3 {
+                right: 20px;
+                top: 45%;
             }
         }
     </style>
@@ -172,7 +218,7 @@
     </div>
 
     <div class="page active" id="page-are">
-        <div class="main-text left-text">
+        <div class="main-text are-pos-1">
             <div class="line"><span class="word">SMALL</span><span class="ghost">LLAMS</span></div>
             <div class="line"><span class="word">DISRUPTIONS</span><span class="ghost">SNOITPURSID</span></div>
             <div class="line"><span class="word">THAT</span><span class="ghost">TAHT</span></div>
@@ -184,7 +230,7 @@
             <div class="line"><span class="word">OUTCOMES</span><span class="ghost">SEMOCTUO</span></div>
         </div>
 
-        <div class="main-text right-text">
+        <div class="main-text are-pos-2">
             <div class="line"><span class="word">NON-OPTIMIZED</span><span class="ghost">DEZIMITPO-NON</span></div>
             <div class="line"><span class="word">BEHAVIORS;</span><span class="ghost">;SROIVAHEB</span></div>
             <div class="line"><span class="word">DOING</span><span class="ghost">GNIOD</span></div>
@@ -197,10 +243,23 @@
             <div class="line"><span class="word">THEY'RE</span><span class="ghost">ER'YEHT</span></div>
             <div class="line"><span class="word">EFFICIENT</span><span class="ghost">TNEICIFFE</span></div>
         </div>
+
+        <div class="main-text are-pos-3">
+            <div class="line"><span class="word">ACTIONS</span><span class="ghost">SNOITCA</span></div>
+            <div class="line"><span class="word">THAT</span><span class="ghost">TAHT</span></div>
+            <div class="line"><span class="word">AREN'T</span><span class="ghost">T'NERA</span></div>
+            <div class="line"><span class="word">SUPPOSED</span><span class="ghost">DESOPPUS</span></div>
+            <div class="line"><span class="word">TO</span><span class="ghost">OT</span></div>
+            <div class="line"><span class="word">BE</span><span class="ghost">EB</span></div>
+            <div class="line"><span class="word">VALUABLE</span><span class="ghost">ELBAULAV</span></div>
+            <div class="line"><span class="word">BUT</span><span class="ghost">TUB</span></div>
+            <div class="line"><span class="word">SOMEHOW</span><span class="ghost">WOHEMOS</span></div>
+            <div class="line"><span class="word">ARE</span><span class="ghost">ERA</span></div>
+        </div>
     </div>
 
     <div class="page" id="page-is">
-        <div class="main-text left-text">
+        <div class="main-text is-pos-1">
             <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
             <div class="line"><span class="word">SANDBOX</span><span class="ghost">XOBDNAS</span></div>
             <div class="line"><span class="word">FOR</span><span class="ghost">ROF</span></div>
@@ -209,7 +268,7 @@
             <div class="line"><span class="word">MISBEHAVIOR</span><span class="ghost">ROIVAHEBSIM</span></div>
         </div>
 
-        <div class="main-text center-text">
+        <div class="main-text is-pos-2">
             <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
             <div class="line"><span class="word">LIGHTWEIGHT</span><span class="ghost">THGIEWTHGIL</span></div>
             <div class="line"><span class="word">ENGINE</span><span class="ghost">ENIGNE</span></div>
@@ -218,7 +277,7 @@
             <div class="line"><span class="word">UNPREDICTABILITY</span><span class="ghost">YTILIBATCIDERPNU</span></div>
         </div>
 
-        <div class="main-text right-text-is">
+        <div class="main-text is-pos-3">
             <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
             <div class="line"><span class="word">DIGITALLY</span><span class="ghost">YLLATIGID</span></div>
             <div class="line"><span class="word">NATIVE</span><span class="ghost">EVITAN</span></div>
