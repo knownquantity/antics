@@ -20,6 +20,11 @@
             font-family: 'Space Mono', 'Courier New', monospace;
             position: relative;
             overflow: hidden;
+            transition: background-color 0.5s ease;
+        }
+        
+        body.disco-mode {
+            background-color: #4B9CD3;
         }
         
         .header {
@@ -45,6 +50,10 @@
             font-size: 18px;
             font-weight: 700;
             letter-spacing: 0.05em;
+        }
+        
+        body.disco-mode .toggle {
+            display: none;
         }
         
         .toggle-option {
@@ -80,7 +89,7 @@
             100% { transform: rotateY(0deg); }
         }
         
-        .enter-btn {
+        .nav-btn {
             position: absolute;
             top: 40px;
             right: 40px;
@@ -94,11 +103,15 @@
             letter-spacing: 0.05em;
             cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">⚠️</text></svg>'), pointer;
             z-index: 100;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, color 0.3s ease;
         }
         
-        .enter-btn:hover {
+        .nav-btn:hover {
             transform: scale(1.05);
+        }
+        
+        body.disco-mode .nav-btn {
+            color: #4B9CD3;
         }
         
         .main-text {
@@ -112,7 +125,6 @@
             line-height: 1.4;
             color: #000;
             width: 280px;
-            transition: left 0.5s ease-out, top 0.5s ease-out;
             z-index: 10;
         }
         
@@ -146,6 +158,215 @@
             display: inline-block;
         }
         
+        /* Disco page styles */
+        .disco-page {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .disco-page.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .disco-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .disco-ball {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #fff 0%, #ccc 25%, #fff 50%, #999 75%, #fff 100%);
+            border-radius: 50%;
+            position: relative;
+            animation: spin 4s linear infinite;
+            box-shadow: 
+                0 0 20px rgba(255,255,255,0.5),
+                inset 0 0 20px rgba(0,0,0,0.2);
+        }
+        
+        .disco-ball::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 8px,
+                    rgba(0,0,0,0.1) 8px,
+                    rgba(0,0,0,0.1) 10px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 8px,
+                    rgba(0,0,0,0.1) 8px,
+                    rgba(0,0,0,0.1) 10px
+                );
+        }
+        
+        .disco-string {
+            width: 2px;
+            height: 60px;
+            background: #000;
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        @keyframes spin {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+        
+        .stick-figure {
+            width: 100px;
+            height: 150px;
+            position: relative;
+            animation: dance 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes dance {
+            0% { transform: translateY(0) rotate(-5deg); }
+            100% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        .stick-figure .head {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: transparent;
+        }
+        
+        .stick-figure .body {
+            width: 3px;
+            height: 50px;
+            background: #000;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .stick-figure .arm-left {
+            width: 40px;
+            height: 3px;
+            background: #000;
+            position: absolute;
+            top: 45px;
+            left: 10px;
+            transform-origin: right center;
+            animation: arm-left 0.5s ease-in-out infinite alternate;
+        }
+        
+        .stick-figure .arm-right {
+            width: 40px;
+            height: 3px;
+            background: #000;
+            position: absolute;
+            top: 45px;
+            right: 10px;
+            transform-origin: left center;
+            animation: arm-right 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes arm-left {
+            0% { transform: rotate(-30deg); }
+            100% { transform: rotate(30deg); }
+        }
+        
+        @keyframes arm-right {
+            0% { transform: rotate(30deg); }
+            100% { transform: rotate(-30deg); }
+        }
+        
+        .stick-figure .leg-left {
+            width: 3px;
+            height: 45px;
+            background: #000;
+            position: absolute;
+            top: 80px;
+            left: 35px;
+            transform-origin: top center;
+            animation: leg-left 0.5s ease-in-out infinite alternate;
+        }
+        
+        .stick-figure .leg-right {
+            width: 3px;
+            height: 45px;
+            background: #000;
+            position: absolute;
+            top: 80px;
+            right: 35px;
+            transform-origin: top center;
+            animation: leg-right 0.5s ease-in-out infinite alternate;
+        }
+        
+        @keyframes leg-left {
+            0% { transform: rotate(-20deg); }
+            100% { transform: rotate(20deg); }
+        }
+        
+        @keyframes leg-right {
+            0% { transform: rotate(20deg); }
+            100% { transform: rotate(-20deg); }
+        }
+        
+        /* Disco light rays */
+        .disco-lights {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+        
+        .light-ray {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 4px;
+            transform-origin: left center;
+            animation: ray-pulse 1s ease-in-out infinite;
+        }
+        
+        .light-ray:nth-child(1) { background: #ff6b6b; transform: rotate(0deg); animation-delay: 0s; }
+        .light-ray:nth-child(2) { background: #4ecdc4; transform: rotate(45deg); animation-delay: 0.125s; }
+        .light-ray:nth-child(3) { background: #ffe66d; transform: rotate(90deg); animation-delay: 0.25s; }
+        .light-ray:nth-child(4) { background: #95e1d3; transform: rotate(135deg); animation-delay: 0.375s; }
+        .light-ray:nth-child(5) { background: #f38181; transform: rotate(180deg); animation-delay: 0.5s; }
+        .light-ray:nth-child(6) { background: #aa96da; transform: rotate(225deg); animation-delay: 0.625s; }
+        .light-ray:nth-child(7) { background: #fcbad3; transform: rotate(270deg); animation-delay: 0.75s; }
+        .light-ray:nth-child(8) { background: #a8d8ea; transform: rotate(315deg); animation-delay: 0.875s; }
+        
+        @keyframes ray-pulse {
+            0%, 100% { opacity: 0.3; width: 150px; }
+            50% { opacity: 0.8; width: 200px; }
+        }
+        
         @media (max-width: 768px) {
             .header {
                 top: 20px;
@@ -160,7 +381,7 @@
                 font-size: 14px;
             }
             
-            .enter-btn {
+            .nav-btn {
                 top: 20px;
                 right: 20px;
                 padding: 10px 20px;
@@ -183,7 +404,7 @@
         </div>
     </div>
     
-    <button class="enter-btn">ENTER :)</button>
+    <button class="nav-btn" id="nav-btn">ENTER</button>
 
     <div class="page active" id="page-are">
         <div class="main-text" data-index="0">
@@ -262,21 +483,51 @@
         </div>
     </div>
 
+    <div class="disco-page" id="disco-page">
+        <div class="disco-lights">
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+            <div class="light-ray"></div>
+        </div>
+        <div class="disco-container">
+            <div class="disco-ball">
+                <div class="disco-string"></div>
+            </div>
+            <div class="stick-figure">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="arm-left"></div>
+                <div class="arm-right"></div>
+                <div class="leg-left"></div>
+                <div class="leg-right"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const toggle = document.querySelector('.toggle');
         const toggleOptions = document.querySelectorAll('.toggle-option');
         const pages = document.querySelectorAll('.page');
         const header = document.querySelector('.header');
-        const enterBtn = document.querySelector('.enter-btn');
+        const navBtn = document.getElementById('nav-btn');
+        const discoPage = document.getElementById('disco-page');
         
-        // Exclusion zones (header and enter button areas)
-        const PADDING = 40;
-        const TEXT_WIDTH = 380; // width with some buffer for hover scale
-        const TEXT_HEIGHT_ESTIMATE = 350; // rough max height
+        let isDiscoMode = false;
+        
+        // Exclusion zones
+        const PADDING = 60;
+        const TEXT_WIDTH = 420;
+        const TEXT_HEIGHT_ESTIMATE = 400;
+        const SEPARATION_BUFFER = 80;
         
         function getExclusionZones() {
             const headerRect = header.getBoundingClientRect();
-            const btnRect = enterBtn.getBoundingClientRect();
+            const btnRect = navBtn.getBoundingClientRect();
             return [
                 { x: headerRect.left - PADDING, y: headerRect.top - PADDING, w: headerRect.width + PADDING * 2, h: headerRect.height + PADDING * 2 },
                 { x: btnRect.left - PADDING, y: btnRect.top - PADDING, w: btnRect.width + PADDING * 2, h: btnRect.height + PADDING * 2 }
@@ -294,75 +545,47 @@
             const maxX = window.innerWidth - w - PADDING;
             const maxY = window.innerHeight - h - PADDING;
             const minX = PADDING;
-            const minY = 120; // below header
+            const minY = 140;
             
             let attempts = 0;
             let x, y, candidate;
+            
+            const expandedExisting = existingRects.map(r => ({
+                x: r.x - SEPARATION_BUFFER,
+                y: r.y - SEPARATION_BUFFER,
+                w: r.w + SEPARATION_BUFFER * 2,
+                h: r.h + SEPARATION_BUFFER * 2
+            }));
             
             do {
                 x = minX + Math.random() * (maxX - minX);
                 y = minY + Math.random() * (maxY - minY);
                 candidate = { x, y, w, h };
                 attempts++;
-            } while (attempts < 100 && (
-                existingRects.some(r => rectsOverlap(candidate, r)) ||
+            } while (attempts < 200 && (
+                expandedExisting.some(r => rectsOverlap(candidate, r)) ||
                 getExclusionZones().some(r => rectsOverlap(candidate, r))
             ));
             
             return { x, y, w, h };
         }
         
-        function positionTexts(page) {
-            const texts = page.querySelectorAll('.main-text');
-            const rects = [];
-            
-            texts.forEach(text => {
-                const pos = getValidPosition(rects, text);
-                rects.push(pos);
-                text.style.left = pos.x + 'px';
-                text.style.top = pos.y + 'px';
-                text.style.transform = 'none';
-            });
-        }
-        
-        // Initialize positions
-        function initPositions() {
-            pages.forEach(page => {
-                if (page.classList.contains('active')) {
-                    positionTexts(page);
-                }
-            });
-        }
-        
-        // ARE page: Scatter on click
-        document.addEventListener('click', (e) => {
-            // Don't scatter if clicking on toggle, enter button, or text
-            if (e.target.closest('.toggle') || e.target.closest('.enter-btn') || e.target.closest('.main-text')) return;
-            
-            const arePage = document.getElementById('page-are');
-            if (arePage.classList.contains('active')) {
-                positionTexts(arePage);
-            }
-        });
-        
-        // IS page: Flee cursor
+        // Flee cursor for both pages
         let mouseX = 0, mouseY = 0;
-        let isPageTexts = [];
-        let isPageVelocities = [];
+        let allTexts = [];
+        let allVelocities = [];
         
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
         
-        function initIsPagePhysics() {
-            const isPage = document.getElementById('page-is');
-            isPageTexts = Array.from(isPage.querySelectorAll('.main-text'));
-            isPageVelocities = isPageTexts.map(() => ({ vx: 0, vy: 0 }));
+        function initPagePhysics(page) {
+            const texts = Array.from(page.querySelectorAll('.main-text'));
+            const velocities = texts.map(() => ({ vx: 0, vy: 0 }));
             
-            // Set initial positions
             const rects = [];
-            isPageTexts.forEach((text, i) => {
+            texts.forEach((text, i) => {
                 const pos = getValidPosition(rects, text);
                 rects.push(pos);
                 text.style.left = pos.x + 'px';
@@ -370,11 +593,44 @@
                 text.style.transform = 'none';
                 text.style.transition = 'none';
             });
+            
+            return { texts, velocities };
+        }
+        
+        function initAllPhysics() {
+            const arePage = document.getElementById('page-are');
+            const isPage = document.getElementById('page-is');
+            
+            const areData = initPagePhysics(arePage);
+            const isData = initPagePhysics(isPage);
+            
+            allTexts = {
+                are: areData.texts,
+                is: isData.texts
+            };
+            allVelocities = {
+                are: areData.velocities,
+                is: isData.velocities
+            };
         }
         
         function fleeLoop() {
-            const isPage = document.getElementById('page-is');
-            if (!isPage.classList.contains('active')) {
+            if (isDiscoMode) {
+                requestAnimationFrame(fleeLoop);
+                return;
+            }
+            
+            const activePage = document.querySelector('.page.active');
+            if (!activePage) {
+                requestAnimationFrame(fleeLoop);
+                return;
+            }
+            
+            const pageKey = activePage.id === 'page-are' ? 'are' : 'is';
+            const texts = allTexts[pageKey];
+            const velocities = allVelocities[pageKey];
+            
+            if (!texts || !velocities) {
                 requestAnimationFrame(fleeLoop);
                 return;
             }
@@ -382,73 +638,79 @@
             const exclusions = getExclusionZones();
             const currentRects = [];
             
-            isPageTexts.forEach((text, i) => {
+            texts.forEach((text, i) => {
                 let x = parseFloat(text.style.left) || 0;
                 let y = parseFloat(text.style.top) || 0;
                 const rect = text.getBoundingClientRect();
                 const w = TEXT_WIDTH;
                 const h = rect.height || TEXT_HEIGHT_ESTIMATE;
                 
-                // Calculate center of text
                 const centerX = x + w / 2;
                 const centerY = y + h / 2;
                 
-                // Distance from mouse
                 const dx = centerX - mouseX;
                 const dy = centerY - mouseY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 
-                // Flee if mouse is close (within 250px)
-                const fleeRadius = 250;
+                const fleeRadius = 300;
                 if (dist < fleeRadius && dist > 0) {
-                    const force = (fleeRadius - dist) / fleeRadius * 2;
-                    isPageVelocities[i].vx += (dx / dist) * force;
-                    isPageVelocities[i].vy += (dy / dist) * force;
+                    const force = (fleeRadius - dist) / fleeRadius * 2.5;
+                    velocities[i].vx += (dx / dist) * force;
+                    velocities[i].vy += (dy / dist) * force;
                 }
                 
-                // Apply velocity with damping
-                isPageVelocities[i].vx *= 0.95;
-                isPageVelocities[i].vy *= 0.95;
+                velocities[i].vx *= 0.92;
+                velocities[i].vy *= 0.92;
                 
-                x += isPageVelocities[i].vx;
-                y += isPageVelocities[i].vy;
+                x += velocities[i].vx;
+                y += velocities[i].vy;
                 
-                // Boundary constraints
                 const minX = PADDING;
-                const minY = 120;
+                const minY = 140;
                 const maxX = window.innerWidth - w - PADDING;
                 const maxY = window.innerHeight - h - PADDING;
                 
-                if (x < minX) { x = minX; isPageVelocities[i].vx *= -0.5; }
-                if (x > maxX) { x = maxX; isPageVelocities[i].vx *= -0.5; }
-                if (y < minY) { y = minY; isPageVelocities[i].vy *= -0.5; }
-                if (y > maxY) { y = maxY; isPageVelocities[i].vy *= -0.5; }
+                if (x < minX) { x = minX; velocities[i].vx *= -0.5; }
+                if (x > maxX) { x = maxX; velocities[i].vx *= -0.5; }
+                if (y < minY) { y = minY; velocities[i].vy *= -0.5; }
+                if (y > maxY) { y = maxY; velocities[i].vy *= -0.5; }
                 
-                // Avoid exclusion zones
                 const candidate = { x, y, w, h };
+                const expandedCandidate = { 
+                    x: x - SEPARATION_BUFFER/2, 
+                    y: y - SEPARATION_BUFFER/2, 
+                    w: w + SEPARATION_BUFFER, 
+                    h: h + SEPARATION_BUFFER 
+                };
+                
                 exclusions.forEach(zone => {
-                    if (rectsOverlap(candidate, zone)) {
-                        // Push away from zone center
+                    if (rectsOverlap(expandedCandidate, zone)) {
                         const zoneCenterX = zone.x + zone.w / 2;
                         const zoneCenterY = zone.y + zone.h / 2;
                         const pushX = centerX - zoneCenterX;
                         const pushY = centerY - zoneCenterY;
                         const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
-                        isPageVelocities[i].vx += (pushX / pushDist) * 3;
-                        isPageVelocities[i].vy += (pushY / pushDist) * 3;
+                        velocities[i].vx += (pushX / pushDist) * 5;
+                        velocities[i].vy += (pushY / pushDist) * 5;
                     }
                 });
                 
-                // Avoid other texts
                 currentRects.forEach((otherRect, j) => {
-                    if (rectsOverlap(candidate, otherRect)) {
+                    const expandedOther = {
+                        x: otherRect.x - SEPARATION_BUFFER,
+                        y: otherRect.y - SEPARATION_BUFFER,
+                        w: otherRect.w + SEPARATION_BUFFER * 2,
+                        h: otherRect.h + SEPARATION_BUFFER * 2
+                    };
+                    
+                    if (rectsOverlap(candidate, expandedOther)) {
                         const otherCenterX = otherRect.x + otherRect.w / 2;
                         const otherCenterY = otherRect.y + otherRect.h / 2;
                         const pushX = centerX - otherCenterX;
                         const pushY = centerY - otherCenterY;
                         const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
-                        isPageVelocities[i].vx += (pushX / pushDist) * 2;
-                        isPageVelocities[i].vy += (pushY / pushDist) * 2;
+                        velocities[i].vx += (pushX / pushDist) * 6;
+                        velocities[i].vy += (pushY / pushDist) * 6;
                     }
                 });
                 
@@ -484,15 +746,6 @@
                         page.classList.remove('active');
                         if (page.id === `page-${targetPage}`) {
                             page.classList.add('active');
-                            if (targetPage === 'are') {
-                                // Re-enable transitions for ARE page
-                                page.querySelectorAll('.main-text').forEach(t => {
-                                    t.style.transition = 'left 0.5s ease-out, top 0.5s ease-out';
-                                });
-                                positionTexts(page);
-                            } else {
-                                initIsPagePhysics();
-                            }
                         }
                     });
                     
@@ -503,6 +756,25 @@
                     toggle.classList.remove('switching');
                 }, 400);
             });
+        });
+        
+        // Enter/Home button
+        navBtn.addEventListener('click', () => {
+            if (isDiscoMode) {
+                // Go home
+                isDiscoMode = false;
+                document.body.classList.remove('disco-mode');
+                discoPage.classList.remove('active');
+                document.getElementById('page-are').classList.add('active');
+                navBtn.textContent = 'ENTER';
+            } else {
+                // Enter disco
+                isDiscoMode = true;
+                document.body.classList.add('disco-mode');
+                pages.forEach(p => p.classList.remove('active'));
+                discoPage.classList.add('active');
+                navBtn.textContent = 'HOME';
+            }
         });
         
         // Hover effects
@@ -525,16 +797,14 @@
         
         // Initialize
         window.addEventListener('load', () => {
-            initPositions();
+            initAllPhysics();
             initHoverEffects();
-            initIsPagePhysics();
             fleeLoop();
         });
         
         window.addEventListener('resize', () => {
-            const activePage = document.querySelector('.page.active');
-            if (activePage.id === 'page-are') {
-                positionTexts(activePage);
+            if (!isDiscoMode) {
+                initAllPhysics();
             }
         });
     </script>
