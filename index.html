@@ -25,10 +25,11 @@
         .header {
             position: absolute;
             top: 40px;
-            right: 40px;
+            left: 40px;
             display: flex;
             align-items: baseline;
             gap: 15px;
+            z-index: 100;
         }
         
         .logo {
@@ -79,6 +80,27 @@
             100% { transform: rotateY(0deg); }
         }
         
+        .enter-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: #000;
+            color: #FFD700;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Space Mono', 'Courier New', monospace;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">⚠️</text></svg>'), pointer;
+            z-index: 100;
+            transition: transform 0.2s ease;
+        }
+        
+        .enter-btn:hover {
+            transform: scale(1.05);
+        }
+        
         .main-text {
             position: absolute;
             display: flex;
@@ -90,41 +112,8 @@
             line-height: 1.4;
             color: #000;
             width: 280px;
-        }
-        
-        /* ARE page positions - scattered */
-        .are-pos-1 {
-            left: 60px;
-            top: 140px;
-        }
-        
-        .are-pos-2 {
-            right: 80px;
-            bottom: 60px;
-        }
-        
-        .are-pos-3 {
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        /* IS page positions - scattered */
-        .is-pos-1 {
-            left: 60px;
-            bottom: 80px;
-        }
-        
-        .is-pos-2 {
-            left: 50%;
-            top: 140px;
-            transform: translateX(-50%);
-        }
-        
-        .is-pos-3 {
-            right: 60px;
-            top: 50%;
-            transform: translateY(-50%);
+            transition: left 0.5s ease-out, top 0.5s ease-out;
+            z-index: 10;
         }
         
         .line {
@@ -160,7 +149,7 @@
         @media (max-width: 768px) {
             .header {
                 top: 20px;
-                right: 20px;
+                left: 20px;
             }
             
             .logo {
@@ -171,39 +160,16 @@
                 font-size: 14px;
             }
             
+            .enter-btn {
+                top: 20px;
+                right: 20px;
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
             .main-text {
                 font-size: 12px;
                 width: 160px;
-            }
-            
-            .are-pos-1 {
-                left: 20px;
-                top: 100px;
-            }
-            
-            .are-pos-2 {
-                right: 20px;
-                bottom: 40px;
-            }
-            
-            .are-pos-3 {
-                left: 50%;
-                top: 50%;
-            }
-            
-            .is-pos-1 {
-                left: 20px;
-                bottom: 40px;
-            }
-            
-            .is-pos-2 {
-                left: 50%;
-                top: 100px;
-            }
-            
-            .is-pos-3 {
-                right: 20px;
-                top: 45%;
             }
         }
     </style>
@@ -216,9 +182,11 @@
             <span class="toggle-option inactive" data-page="is">IS</span>
         </div>
     </div>
+    
+    <button class="enter-btn">ENTER :)</button>
 
     <div class="page active" id="page-are">
-        <div class="main-text are-pos-1">
+        <div class="main-text" data-index="0">
             <div class="line"><span class="word">SMALL</span><span class="ghost">LLAMS</span></div>
             <div class="line"><span class="word">DISRUPTIONS</span><span class="ghost">SNOITPURSID</span></div>
             <div class="line"><span class="word">THAT</span><span class="ghost">TAHT</span></div>
@@ -230,7 +198,7 @@
             <div class="line"><span class="word">OUTCOMES</span><span class="ghost">SEMOCTUO</span></div>
         </div>
 
-        <div class="main-text are-pos-2">
+        <div class="main-text" data-index="1">
             <div class="line"><span class="word">NON-OPTIMIZED</span><span class="ghost">DEZIMITPO-NON</span></div>
             <div class="line"><span class="word">BEHAVIORS;</span><span class="ghost">;SROIVAHEB</span></div>
             <div class="line"><span class="word">DOING</span><span class="ghost">GNIOD</span></div>
@@ -244,7 +212,7 @@
             <div class="line"><span class="word">EFFICIENT</span><span class="ghost">TNEICIFFE</span></div>
         </div>
 
-        <div class="main-text are-pos-3">
+        <div class="main-text" data-index="2">
             <div class="line"><span class="word">ACTIONS</span><span class="ghost">SNOITCA</span></div>
             <div class="line"><span class="word">THAT</span><span class="ghost">TAHT</span></div>
             <div class="line"><span class="word">AREN'T</span><span class="ghost">T'NERA</span></div>
@@ -259,7 +227,7 @@
     </div>
 
     <div class="page" id="page-is">
-        <div class="main-text is-pos-1">
+        <div class="main-text" data-index="0">
             <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
             <div class="line"><span class="word">SANDBOX</span><span class="ghost">XOBDNAS</span></div>
             <div class="line"><span class="word">FOR</span><span class="ghost">ROF</span></div>
@@ -268,7 +236,7 @@
             <div class="line"><span class="word">MISBEHAVIOR</span><span class="ghost">ROIVAHEBSIM</span></div>
         </div>
 
-        <div class="main-text is-pos-2">
+        <div class="main-text" data-index="1">
             <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
             <div class="line"><span class="word">LIGHTWEIGHT</span><span class="ghost">THGIEWTHGIL</span></div>
             <div class="line"><span class="word">ENGINE</span><span class="ghost">ENIGNE</span></div>
@@ -277,7 +245,7 @@
             <div class="line"><span class="word">UNPREDICTABILITY</span><span class="ghost">YTILIBATCIDERPNU</span></div>
         </div>
 
-        <div class="main-text is-pos-3">
+        <div class="main-text" data-index="2">
             <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
             <div class="line"><span class="word">DIGITALLY</span><span class="ghost">YLLATIGID</span></div>
             <div class="line"><span class="word">NATIVE</span><span class="ghost">EVITAN</span></div>
@@ -295,23 +263,214 @@
     </div>
 
     <script>
-        // Toggle functionality
         const toggle = document.querySelector('.toggle');
         const toggleOptions = document.querySelectorAll('.toggle-option');
         const pages = document.querySelectorAll('.page');
+        const header = document.querySelector('.header');
+        const enterBtn = document.querySelector('.enter-btn');
         
+        // Exclusion zones (header and enter button areas)
+        const PADDING = 40;
+        const TEXT_WIDTH = 380; // width with some buffer for hover scale
+        const TEXT_HEIGHT_ESTIMATE = 350; // rough max height
+        
+        function getExclusionZones() {
+            const headerRect = header.getBoundingClientRect();
+            const btnRect = enterBtn.getBoundingClientRect();
+            return [
+                { x: headerRect.left - PADDING, y: headerRect.top - PADDING, w: headerRect.width + PADDING * 2, h: headerRect.height + PADDING * 2 },
+                { x: btnRect.left - PADDING, y: btnRect.top - PADDING, w: btnRect.width + PADDING * 2, h: btnRect.height + PADDING * 2 }
+            ];
+        }
+        
+        function rectsOverlap(r1, r2) {
+            return !(r1.x + r1.w < r2.x || r2.x + r2.w < r1.x || r1.y + r1.h < r2.y || r2.y + r2.h < r1.y);
+        }
+        
+        function getValidPosition(existingRects, textEl) {
+            const elRect = textEl.getBoundingClientRect();
+            const w = TEXT_WIDTH;
+            const h = elRect.height || TEXT_HEIGHT_ESTIMATE;
+            const maxX = window.innerWidth - w - PADDING;
+            const maxY = window.innerHeight - h - PADDING;
+            const minX = PADDING;
+            const minY = 120; // below header
+            
+            let attempts = 0;
+            let x, y, candidate;
+            
+            do {
+                x = minX + Math.random() * (maxX - minX);
+                y = minY + Math.random() * (maxY - minY);
+                candidate = { x, y, w, h };
+                attempts++;
+            } while (attempts < 100 && (
+                existingRects.some(r => rectsOverlap(candidate, r)) ||
+                getExclusionZones().some(r => rectsOverlap(candidate, r))
+            ));
+            
+            return { x, y, w, h };
+        }
+        
+        function positionTexts(page) {
+            const texts = page.querySelectorAll('.main-text');
+            const rects = [];
+            
+            texts.forEach(text => {
+                const pos = getValidPosition(rects, text);
+                rects.push(pos);
+                text.style.left = pos.x + 'px';
+                text.style.top = pos.y + 'px';
+                text.style.transform = 'none';
+            });
+        }
+        
+        // Initialize positions
+        function initPositions() {
+            pages.forEach(page => {
+                if (page.classList.contains('active')) {
+                    positionTexts(page);
+                }
+            });
+        }
+        
+        // ARE page: Scatter on click
+        document.addEventListener('click', (e) => {
+            // Don't scatter if clicking on toggle, enter button, or text
+            if (e.target.closest('.toggle') || e.target.closest('.enter-btn') || e.target.closest('.main-text')) return;
+            
+            const arePage = document.getElementById('page-are');
+            if (arePage.classList.contains('active')) {
+                positionTexts(arePage);
+            }
+        });
+        
+        // IS page: Flee cursor
+        let mouseX = 0, mouseY = 0;
+        let isPageTexts = [];
+        let isPageVelocities = [];
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        function initIsPagePhysics() {
+            const isPage = document.getElementById('page-is');
+            isPageTexts = Array.from(isPage.querySelectorAll('.main-text'));
+            isPageVelocities = isPageTexts.map(() => ({ vx: 0, vy: 0 }));
+            
+            // Set initial positions
+            const rects = [];
+            isPageTexts.forEach((text, i) => {
+                const pos = getValidPosition(rects, text);
+                rects.push(pos);
+                text.style.left = pos.x + 'px';
+                text.style.top = pos.y + 'px';
+                text.style.transform = 'none';
+                text.style.transition = 'none';
+            });
+        }
+        
+        function fleeLoop() {
+            const isPage = document.getElementById('page-is');
+            if (!isPage.classList.contains('active')) {
+                requestAnimationFrame(fleeLoop);
+                return;
+            }
+            
+            const exclusions = getExclusionZones();
+            const currentRects = [];
+            
+            isPageTexts.forEach((text, i) => {
+                let x = parseFloat(text.style.left) || 0;
+                let y = parseFloat(text.style.top) || 0;
+                const rect = text.getBoundingClientRect();
+                const w = TEXT_WIDTH;
+                const h = rect.height || TEXT_HEIGHT_ESTIMATE;
+                
+                // Calculate center of text
+                const centerX = x + w / 2;
+                const centerY = y + h / 2;
+                
+                // Distance from mouse
+                const dx = centerX - mouseX;
+                const dy = centerY - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                // Flee if mouse is close (within 250px)
+                const fleeRadius = 250;
+                if (dist < fleeRadius && dist > 0) {
+                    const force = (fleeRadius - dist) / fleeRadius * 2;
+                    isPageVelocities[i].vx += (dx / dist) * force;
+                    isPageVelocities[i].vy += (dy / dist) * force;
+                }
+                
+                // Apply velocity with damping
+                isPageVelocities[i].vx *= 0.95;
+                isPageVelocities[i].vy *= 0.95;
+                
+                x += isPageVelocities[i].vx;
+                y += isPageVelocities[i].vy;
+                
+                // Boundary constraints
+                const minX = PADDING;
+                const minY = 120;
+                const maxX = window.innerWidth - w - PADDING;
+                const maxY = window.innerHeight - h - PADDING;
+                
+                if (x < minX) { x = minX; isPageVelocities[i].vx *= -0.5; }
+                if (x > maxX) { x = maxX; isPageVelocities[i].vx *= -0.5; }
+                if (y < minY) { y = minY; isPageVelocities[i].vy *= -0.5; }
+                if (y > maxY) { y = maxY; isPageVelocities[i].vy *= -0.5; }
+                
+                // Avoid exclusion zones
+                const candidate = { x, y, w, h };
+                exclusions.forEach(zone => {
+                    if (rectsOverlap(candidate, zone)) {
+                        // Push away from zone center
+                        const zoneCenterX = zone.x + zone.w / 2;
+                        const zoneCenterY = zone.y + zone.h / 2;
+                        const pushX = centerX - zoneCenterX;
+                        const pushY = centerY - zoneCenterY;
+                        const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
+                        isPageVelocities[i].vx += (pushX / pushDist) * 3;
+                        isPageVelocities[i].vy += (pushY / pushDist) * 3;
+                    }
+                });
+                
+                // Avoid other texts
+                currentRects.forEach((otherRect, j) => {
+                    if (rectsOverlap(candidate, otherRect)) {
+                        const otherCenterX = otherRect.x + otherRect.w / 2;
+                        const otherCenterY = otherRect.y + otherRect.h / 2;
+                        const pushX = centerX - otherCenterX;
+                        const pushY = centerY - otherCenterY;
+                        const pushDist = Math.sqrt(pushX * pushX + pushY * pushY) || 1;
+                        isPageVelocities[i].vx += (pushX / pushDist) * 2;
+                        isPageVelocities[i].vy += (pushY / pushDist) * 2;
+                    }
+                });
+                
+                currentRects.push({ x, y, w, h });
+                
+                text.style.left = x + 'px';
+                text.style.top = y + 'px';
+            });
+            
+            requestAnimationFrame(fleeLoop);
+        }
+        
+        // Toggle functionality
         toggleOptions.forEach(option => {
             option.addEventListener('click', () => {
                 const targetPage = option.dataset.page;
                 
-                // Don't do anything if already active
                 if (option.classList.contains('active')) return;
                 
-                // Add switching animation
                 toggle.classList.add('switching');
                 
                 setTimeout(() => {
-                    // Update toggle states
                     toggleOptions.forEach(opt => {
                         opt.classList.remove('active', 'inactive');
                         if (opt.dataset.page === targetPage) {
@@ -321,15 +480,22 @@
                         }
                     });
                     
-                    // Update page visibility
                     pages.forEach(page => {
                         page.classList.remove('active');
                         if (page.id === `page-${targetPage}`) {
                             page.classList.add('active');
+                            if (targetPage === 'are') {
+                                // Re-enable transitions for ARE page
+                                page.querySelectorAll('.main-text').forEach(t => {
+                                    t.style.transition = 'left 0.5s ease-out, top 0.5s ease-out';
+                                });
+                                positionTexts(page);
+                            } else {
+                                initIsPagePhysics();
+                            }
                         }
                     });
                     
-                    // Reinitialize hover effects
                     initHoverEffects();
                 }, 200);
                 
@@ -344,20 +510,33 @@
             document.querySelectorAll('.page.active .main-text').forEach(textBlock => {
                 const lines = textBlock.querySelectorAll('.line');
                 
-                textBlock.addEventListener('mouseleave', () => {
+                textBlock.onmouseleave = () => {
                     lines.forEach(line => line.classList.remove('active'));
-                });
+                };
                 
                 lines.forEach(line => {
-                    line.addEventListener('mouseenter', () => {
+                    line.onmouseenter = () => {
                         lines.forEach(l => l.classList.remove('active'));
                         line.classList.add('active');
-                    });
+                    };
                 });
             });
         }
         
-        initHoverEffects();
+        // Initialize
+        window.addEventListener('load', () => {
+            initPositions();
+            initHoverEffects();
+            initIsPagePhysics();
+            fleeLoop();
+        });
+        
+        window.addEventListener('resize', () => {
+            const activePage = document.querySelector('.page.active');
+            if (activePage.id === 'page-are') {
+                positionTexts(activePage);
+            }
+        });
     </script>
 </body>
 </html>
