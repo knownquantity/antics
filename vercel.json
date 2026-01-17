@@ -2,10 +2,5 @@
   "version": 2,
   "buildCommand": null,
   "outputDirectory": ".",
-  "installCommand": null,
-  "functions": {
-    "api/og-image.js": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  "installCommand": null
 }
