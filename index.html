@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">⚠️</text></svg>'), auto;
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><text y="36" font-size="36">⚠️</text></svg>'), auto;
         }
         
         body {
@@ -57,8 +57,10 @@
         }
         
         .toggle-option {
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">⚠️</text></svg>'), pointer;
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><text y="36" font-size="36">⚠️</text></svg>'), pointer;
             transition: color 0.2s ease, transform 0.4s ease;
+            padding: 10px 15px;
+            display: inline-block;
         }
         
         .toggle-option.active {
@@ -103,7 +105,7 @@
             font-size: 18px;
             font-weight: 700;
             letter-spacing: 0.05em;
-            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><text y="24" font-size="24">⚠️</text></svg>'), pointer;
+            cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"><text y="36" font-size="36">⚠️</text></svg>'), pointer;
             z-index: 100;
             transition: transform 0.2s ease, color 0.3s ease;
         }
@@ -114,6 +116,52 @@
         
         body.disco-mode .nav-btn {
             color: #FFB40F;
+        }
+        
+        .typewriter-text {
+            position: absolute;
+            top: 140px;
+            left: 40px;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            line-height: 1.6;
+            color: #000;
+            white-space: pre-line;
+            word-wrap: break-word;
+            max-width: calc(100% - 80px);
+        }
+        
+        .typewriter-text .sentence-break {
+            display: block;
+            margin-top: 2em;
+            margin-bottom: 0;
+            height: 0;
+            line-height: 0;
+        }
+        
+        .typewriter-text .word {
+            color: #000;
+        }
+        
+        .typewriter-text .ghost {
+            color: rgba(0, 0, 0, 0.15);
+            transform: scaleX(-1);
+            display: inline-block;
+        }
+        
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: #000;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
         
         .main-text {
@@ -127,38 +175,6 @@
             line-height: 1.4;
             color: #000;
             z-index: 10;
-        }
-        
-        /* ARE page: Left column has sentences 0 and 2, Right column has sentence 1 */
-        #page-are .main-text[data-index="0"] {
-            left: 60px;
-            top: 130px;
-        }
-        
-        #page-are .main-text[data-index="1"] {
-            right: 60px;
-            top: 130px;
-        }
-        
-        #page-are .main-text[data-index="2"] {
-            left: 60px;
-            top: 400px;
-        }
-        
-        /* IS page: sentence 0 top-left, sentence 1 top-right, sentence 2 bottom-left */
-        #page-is .main-text[data-index="0"] {
-            left: 60px;
-            top: 130px;
-        }
-        
-        #page-is .main-text[data-index="1"] {
-            right: 60px;
-            top: 130px;
-        }
-        
-        #page-is .main-text[data-index="2"] {
-            left: 60px;
-            top: 320px;
         }
         
         .line {
@@ -225,9 +241,12 @@
                 font-size: 14px;
             }
             
-            .main-text {
-                font-size: 12px;
-                width: 160px;
+            .typewriter-text {
+                top: 100px;
+                left: 20px;
+                font-size: 16px;
+                line-height: 1.6;
+                max-width: calc(100% - 40px);
             }
         }
     </style>
@@ -244,87 +263,15 @@
     <button class="nav-btn" id="nav-btn">ENTER</button>
 
     <div class="page active" id="page-are">
-        <div class="main-text" data-index="0">
-            <div class="line"><span class="word">SMALL</span><span class="ghost">LLAMS</span></div>
-            <div class="line"><span class="word">DISRUPTIONS</span><span class="ghost">SNOITPURSID</span></div>
-            <div class="line"><span class="word">THAT</span><span class="ghost">TAHT</span></div>
-            <div class="line"><span class="word">CREATE</span><span class="ghost">ETAERC</span></div>
-            <div class="line"><span class="word">NEW</span><span class="ghost">WEN</span></div>
-            <div class="line"><span class="word">SOCIAL</span><span class="ghost">LAICOS</span></div>
-            <div class="line"><span class="word">OR</span><span class="ghost">RO</span></div>
-            <div class="line"><span class="word">CREATIVE</span><span class="ghost">EVITAERC</span></div>
-            <div class="line"><span class="word">OUTCOMES</span><span class="ghost">SEMOCTUO</span></div>
-        </div>
-
-        <div class="main-text" data-index="1">
-            <div class="line"><span class="word">NON-OPTIMIZED</span><span class="ghost">DEZIMITPO-NON</span></div>
-            <div class="line"><span class="word">BEHAVIORS;</span><span class="ghost">;SROIVAHEB</span></div>
-            <div class="line"><span class="word">DOING</span><span class="ghost">GNIOD</span></div>
-            <div class="line"><span class="word">THINGS</span><span class="ghost">SGNIHT</span></div>
-            <div class="line"><span class="word">BECAUSE</span><span class="ghost">ESUACEB</span></div>
-            <div class="line"><span class="word">THEY'RE</span><span class="ghost">ER'YEHT</span></div>
-            <div class="line"><span class="word">FUN,</span><span class="ghost">,NUF</span></div>
-            <div class="line"><span class="word">NOT</span><span class="ghost">TON</span></div>
-            <div class="line"><span class="word">BECAUSE</span><span class="ghost">ESUACEB</span></div>
-            <div class="line"><span class="word">THEY'RE</span><span class="ghost">ER'YEHT</span></div>
-            <div class="line"><span class="word">EFFICIENT</span><span class="ghost">TNEICIFFE</span></div>
-        </div>
-
-        <div class="main-text" data-index="2">
-            <div class="line"><span class="word">ACTIONS</span><span class="ghost">SNOITCA</span></div>
-            <div class="line"><span class="word">THAT</span><span class="ghost">TAHT</span></div>
-            <div class="line"><span class="word">AREN'T</span><span class="ghost">T'NERA</span></div>
-            <div class="line"><span class="word">SUPPOSED</span><span class="ghost">DESOPPUS</span></div>
-            <div class="line"><span class="word">TO</span><span class="ghost">OT</span></div>
-            <div class="line"><span class="word">BE</span><span class="ghost">EB</span></div>
-            <div class="line"><span class="word">VALUABLE</span><span class="ghost">ELBAULAV</span></div>
-            <div class="line"><span class="word">BUT</span><span class="ghost">TUB</span></div>
-            <div class="line"><span class="word">SOMEHOW</span><span class="ghost">WOHEMOS</span></div>
-            <div class="line"><span class="word">ARE</span><span class="ghost">ERA</span></div>
-        </div>
+        <div class="typewriter-text" id="are-text"></div>
     </div>
 
     <div class="page" id="page-is">
-        <div class="main-text" data-index="0">
-            <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
-            <div class="line"><span class="word">SANDBOX</span><span class="ghost">XOBDNAS</span></div>
-            <div class="line"><span class="word">FOR</span><span class="ghost">ROF</span></div>
-            <div class="line"><span class="word">HARMLESS</span><span class="ghost">SSELMRAH</span></div>
-            <div class="line"><span class="word">COLLECTIVE</span><span class="ghost">EVITCELLOC</span></div>
-            <div class="line"><span class="word">MISBEHAVIOR</span><span class="ghost">ROIVAHEBSIM</span></div>
-        </div>
-
-        <div class="main-text" data-index="1">
-            <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
-            <div class="line"><span class="word">LIGHTWEIGHT</span><span class="ghost">THGIEWTHGIL</span></div>
-            <div class="line"><span class="word">ENGINE</span><span class="ghost">ENIGNE</span></div>
-            <div class="line"><span class="word">FOR</span><span class="ghost">ROF</span></div>
-            <div class="line"><span class="word">STRUCTURED</span><span class="ghost">DERUTCURTS</span></div>
-            <div class="line"><span class="word">UNPREDICTABILITY</span><span class="ghost">YTILIBATCIDERPNU</span></div>
-        </div>
-
-        <div class="main-text" data-index="2">
-            <div class="line"><span class="word">A</span><span class="ghost">A</span></div>
-            <div class="line"><span class="word">DIGITALLY</span><span class="ghost">YLLATIGID</span></div>
-            <div class="line"><span class="word">NATIVE</span><span class="ghost">EVITAN</span></div>
-            <div class="line"><span class="word">WAY</span><span class="ghost">YAW</span></div>
-            <div class="line"><span class="word">TO</span><span class="ghost">OT</span></div>
-            <div class="line"><span class="word">INTRODUCE</span><span class="ghost">ECUDORTNI</span></div>
-            <div class="line"><span class="word">HARMLESS</span><span class="ghost">SSELMRAH</span></div>
-            <div class="line"><span class="word">MISCHIEF</span><span class="ghost">FEIHCSIM</span></div>
-            <div class="line"><span class="word">INTO</span><span class="ghost">OTNI</span></div>
-            <div class="line"><span class="word">AN</span><span class="ghost">NA</span></div>
-            <div class="line"><span class="word">OTHERWISE</span><span class="ghost">ESIWREHTO</span></div>
-            <div class="line"><span class="word">OPTIMIZED</span><span class="ghost">DEZIMITPO</span></div>
-            <div class="line"><span class="word">LIFE</span><span class="ghost">EFIL</span></div>
-        </div>
+        <div class="typewriter-text" id="is-text"></div>
     </div>
 
     <div class="disco-page" id="disco-page">
-        <div class="main-text" data-index="0">
-            <div class="line"><span class="word">COMING</span><span class="ghost">GNIMOC</span></div>
-            <div class="line"><span class="word">SOON</span><span class="ghost">NOOS</span></div>
-        </div>
+        <div class="typewriter-text" id="disco-text"></div>
     </div>
 
     <script>
@@ -334,8 +281,122 @@
         const header = document.querySelector('.header');
         const navBtn = document.getElementById('nav-btn');
         const discoPage = document.getElementById('disco-page');
+        const areText = document.getElementById('are-text');
+        const isText = document.getElementById('is-text');
+        const discoText = document.getElementById('disco-text');
         
         let isDiscoMode = false;
+        let typewriterTimeout = null;
+        
+        // Text data for typewriter effect
+        const areSentences = [
+            ['SMALL', 'DISRUPTIONS', 'THAT', 'CREATE', 'NEW', 'SOCIAL', 'OR', 'CREATIVE', 'OUTCOMES'],
+            ['NON-OPTIMIZED', 'BEHAVIORS;', 'DOING', 'THINGS', 'BECAUSE', 'THEY\'RE', 'FUN,', 'NOT', 'BECAUSE', 'THEY\'RE', 'EFFICIENT'],
+            ['ACTIONS', 'THAT', 'AREN\'T', 'SUPPOSED', 'TO', 'BE', 'VALUABLE', 'BUT', 'SOMEHOW', 'ARE']
+        ];
+        
+        const isSentences = [
+            ['A', 'SANDBOX', 'FOR', 'HARMLESS', 'COLLECTIVE', 'MISBEHAVIOR'],
+            ['A', 'LIGHTWEIGHT', 'ENGINE', 'FOR', 'STRUCTURED', 'UNPREDICTABILITY'],
+            ['A', 'DIGITALLY', 'NATIVE', 'WAY', 'TO', 'INTRODUCE', 'HEALTHY', 'MISCHIEF', 'INTO', 'AN', 'OTHERWISE', 'OPTIMIZED', 'LIFE']
+        ];
+        
+        const discoSentences = [
+            ['COMING', 'SOON']
+        ];
+        
+        // Helper function to reverse a string for ghost text
+        function reverseString(str) {
+            return str.split('').reverse().join('');
+        }
+        
+        // Typewriter effect function
+        function typewriterEffect(element, sentences, speed = 80, pauseBetweenWords = 200, pauseBetweenSentences = 600) {
+            // Clear any existing timeout
+            if (typewriterTimeout) {
+                clearTimeout(typewriterTimeout);
+            }
+            
+            element.innerHTML = '';
+            
+            let sentenceIndex = 0;
+            let wordIndex = 0;
+            let charIndex = 0;
+            let completedHTML = ''; // Stores all completed words
+            
+            function type() {
+                if (sentenceIndex >= sentences.length) {
+                    // All sentences typed, remove cursor
+                    element.innerHTML = element.innerHTML.replace(/<span class="typewriter-cursor"><\/span>/, '');
+                    return;
+                }
+                
+                const currentSentence = sentences[sentenceIndex];
+                
+                if (wordIndex >= currentSentence.length) {
+                    // Move to next sentence
+                    if (sentenceIndex < sentences.length - 1) {
+                        // Add sentence break with spacing between sentences
+                        completedHTML += '<div class="sentence-break"></div>';
+                        element.innerHTML = completedHTML + '<span class="typewriter-cursor"></span>';
+                        sentenceIndex++;
+                        wordIndex = 0;
+                        charIndex = 0;
+                    } else {
+                        // Last sentence done, remove cursor
+                        element.innerHTML = element.innerHTML.replace(/<span class="typewriter-cursor"><\/span>/, '');
+                        return;
+                    }
+                }
+                
+                const currentWord = currentSentence[wordIndex];
+                
+                if (charIndex < currentWord.length) {
+                    // Type character by character - show completed words + current word being typed
+                    const char = currentWord[charIndex];
+                    const currentWordHTML = currentWord.substring(0, charIndex + 1);
+                    
+                    // Update display: completed words + current word being typed + cursor
+                    element.innerHTML = completedHTML + '<span class="word">' + currentWordHTML + '</span><span class="typewriter-cursor"></span>';
+                    
+                    charIndex++;
+                    typewriterTimeout = setTimeout(type, speed);
+                } else {
+                    // Word complete, add word and move to next word
+                    completedHTML += '<span class="word">' + currentWord + '</span>';
+                    
+                    // Add space (except for punctuation)
+                    if (!currentWord.match(/[,;]$/)) {
+                        completedHTML += ' ';
+                    }
+                    
+                    element.innerHTML = completedHTML + '<span class="typewriter-cursor"></span>';
+                    
+                    wordIndex++;
+                    charIndex = 0;
+                    
+                    // Pause before next word (or longer pause between sentences)
+                    const delay = (wordIndex === currentSentence.length && sentenceIndex < sentences.length - 1) 
+                        ? pauseBetweenSentences 
+                        : pauseBetweenWords;
+                    typewriterTimeout = setTimeout(type, delay);
+                }
+            }
+            
+            type();
+        }
+        
+        // Start typewriter for active page
+        function startTypewriterForActivePage() {
+            const activePage = document.querySelector('.page.active');
+            if (activePage && !isDiscoMode) {
+                if (activePage.id === 'page-are') {
+                    typewriterEffect(areText, areSentences);
+                } else if (activePage.id === 'page-is') {
+                    typewriterEffect(isText, isSentences);
+                }
+            }
+        }
         
         // Flee cursor settings for disco page only
         const PADDING = 60;
@@ -531,7 +592,7 @@
                         }
                     });
                     
-                    initHoverEffects();
+                    startTypewriterForActivePage();
                 }, 200);
                 
                 setTimeout(() => {
@@ -549,6 +610,7 @@
                 discoPage.classList.remove('active');
                 document.getElementById('page-are').classList.add('active');
                 navBtn.textContent = 'ENTER';
+                startTypewriterForActivePage();
             } else {
                 // Enter disco
                 isDiscoMode = true;
@@ -557,38 +619,19 @@
                 discoPage.classList.add('active');
                 navBtn.textContent = 'HOME';
                 
-                // Initialize disco page physics
-                initDiscoPhysics();
+                // Clear typewriter
+                if (typewriterTimeout) {
+                    clearTimeout(typewriterTimeout);
+                }
+                
+                // Initialize COMING SOON typewriter
+                typewriterEffect(discoText, discoSentences);
             }
-            initHoverEffects();
         });
-        
-        // Hover effects
-        function initHoverEffects() {
-            const activeContainers = [
-                ...document.querySelectorAll('.page.active .main-text'),
-                ...document.querySelectorAll('.disco-page.active .main-text')
-            ];
-            
-            activeContainers.forEach(textBlock => {
-                const lines = textBlock.querySelectorAll('.line');
-                
-                textBlock.onmouseleave = () => {
-                    lines.forEach(line => line.classList.remove('active'));
-                };
-                
-                lines.forEach(line => {
-                    line.onmouseenter = () => {
-                        lines.forEach(l => l.classList.remove('active'));
-                        line.classList.add('active');
-                    };
-                });
-            });
-        }
         
         // Initialize
         window.addEventListener('load', () => {
-            initHoverEffects();
+            startTypewriterForActivePage();
             fleeLoop();
         });
     </script>
