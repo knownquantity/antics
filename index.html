@@ -61,7 +61,10 @@
             font-weight: 700;
             letter-spacing: 0.1em;
             color: #000;
-            line-height: 1;
+            line-height: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
         }
         
         .toggle {
@@ -255,7 +258,10 @@
             
             .logo {
                 font-size: 32px;
-                line-height: 1;
+                line-height: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
             }
             
             .toggle {
@@ -340,7 +346,7 @@
         ];
         
         const discoSentences = [
-            ['COMING', 'SOON']
+            ['COMING', 'SOON...']
         ];
         
         // Helper function to reverse a string for ghost text
@@ -349,7 +355,7 @@
         }
         
         // Typewriter effect function
-        function typewriterEffect(element, sentences, speed = 53, pauseBetweenWords = 133, pauseBetweenSentences = 400) {
+        function typewriterEffect(element, sentences, speed = 40, pauseBetweenWords = 100, pauseBetweenSentences = 300) {
             // Clear any existing timeout
             if (typewriterTimeout) {
                 clearTimeout(typewriterTimeout);
