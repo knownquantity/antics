@@ -243,6 +243,9 @@
             .header {
                 top: 20px;
                 left: 20px;
+                right: 120px;
+                flex-wrap: wrap;
+                gap: 10px;
             }
             
             .logo {
@@ -256,8 +259,9 @@
             .nav-btn {
                 top: 20px;
                 right: 20px;
-                padding: 10px 20px;
-                font-size: 14px;
+                padding: 8px 16px;
+                font-size: 12px;
+                min-width: 100px;
             }
             
             .typewriter-text {
@@ -330,7 +334,7 @@
         }
         
         // Typewriter effect function
-        function typewriterEffect(element, sentences, speed = 80, pauseBetweenWords = 200, pauseBetweenSentences = 600) {
+        function typewriterEffect(element, sentences, speed = 53, pauseBetweenWords = 133, pauseBetweenSentences = 400) {
             // Clear any existing timeout
             if (typewriterTimeout) {
                 clearTimeout(typewriterTimeout);
