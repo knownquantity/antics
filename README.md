@@ -15,3 +15,5 @@ IS
 - A lightweight engine for structured unpredictability 
 
 - A digitally native way to introduce healthy mischief into an otherwise optimized life
+
+COMING SOON by 1999 Labs
