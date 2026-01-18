@@ -228,13 +228,13 @@
         }
         
         .word a {
-            color: #000;
-            text-decoration: none;
+            color: #0066cc;
+            text-decoration: underline;
             transition: opacity 0.2s ease;
         }
         
         .word a:hover {
-            opacity: 0.6;
+            opacity: 0.8;
         }
         
         .ghost {
@@ -414,7 +414,7 @@
                     // Check if this is "1999 LABS" and wrap in link while typing
                     let wordHTML;
                     if (currentWord === '1999 LABS') {
-                        wordHTML = '<a href="https://1999.wtf/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: none;">' + currentWordHTML + '</a>';
+                        wordHTML = '<a href="https://1999.wtf/" target="_blank" rel="noopener noreferrer" style="color: #0066cc; text-decoration: underline;">' + currentWordHTML + '</a>';
                     } else {
                         wordHTML = currentWordHTML;
                     }
@@ -428,7 +428,7 @@
                     // Word complete, add word and move to next word
                     // Check if this is "1999 LABS" and wrap in link
                     if (currentWord === '1999 LABS') {
-                        completedHTML += '<span class="word"><a href="https://1999.wtf/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: none;">' + currentWord + '</a></span>';
+                        completedHTML += '<span class="word"><a href="https://1999.wtf/" target="_blank" rel="noopener noreferrer" style="color: #0066cc; text-decoration: underline;">' + currentWord + '</a></span>';
                     } else {
                         completedHTML += '<span class="word">' + currentWord + '</span>';
                     }
