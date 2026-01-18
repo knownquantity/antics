@@ -227,6 +227,16 @@
             color: #000;
         }
         
+        .word a {
+            color: #000;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        .word a:hover {
+            opacity: 0.6;
+        }
+        
         .ghost {
             color: rgba(0, 0, 0, 0.15);
             transform: scaleX(-1);
@@ -346,7 +356,8 @@
         ];
         
         const discoSentences = [
-            ['COMING', 'SOON...']
+            ['COMING', 'SOON...'],
+            ['BY', '1999 LABS']
         ];
         
         // Helper function to reverse a string for ghost text
@@ -400,14 +411,27 @@
                     const char = currentWord[charIndex];
                     const currentWordHTML = currentWord.substring(0, charIndex + 1);
                     
+                    // Check if this is "1999 LABS" and wrap in link while typing
+                    let wordHTML;
+                    if (currentWord === '1999 LABS') {
+                        wordHTML = '<a href="https://1999.wtf/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: none;">' + currentWordHTML + '</a>';
+                    } else {
+                        wordHTML = currentWordHTML;
+                    }
+                    
                     // Update display: completed words + current word being typed + cursor
-                    element.innerHTML = completedHTML + '<span class="word">' + currentWordHTML + '</span><span class="typewriter-cursor"></span>';
+                    element.innerHTML = completedHTML + '<span class="word">' + wordHTML + '</span><span class="typewriter-cursor"></span>';
                     
                     charIndex++;
                     typewriterTimeout = setTimeout(type, speed);
                 } else {
                     // Word complete, add word and move to next word
-                    completedHTML += '<span class="word">' + currentWord + '</span>';
+                    // Check if this is "1999 LABS" and wrap in link
+                    if (currentWord === '1999 LABS') {
+                        completedHTML += '<span class="word"><a href="https://1999.wtf/" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: none;">' + currentWord + '</a></span>';
+                    } else {
+                        completedHTML += '<span class="word">' + currentWord + '</span>';
+                    }
                     
                     // Add space (except for punctuation)
                     if (!currentWord.match(/[,;]$/)) {
