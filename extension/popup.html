@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antics</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 320px;
+      min-height: 400px;
+      background: #FFD700;
+      font-family: 'Space Mono', 'Courier New', monospace;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #000;
+    }
+
+    .master-toggle {
+      position: relative;
+      width: 50px;
+      height: 26px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .master-toggle.active {
+      background: #000;
+    }
+
+    .master-toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #FFD700;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    .master-toggle.active::after {
+      transform: translateX(24px);
+    }
+
+    .status {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .status.active {
+      color: #000;
+    }
+
+    .intensity-section {
+      margin-bottom: 24px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(0, 0, 0, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .intensity-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .intensity-btn {
+      flex: 1;
+      padding: 12px 8px;
+      border: 2px solid #000;
+      background: transparent;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #000;
+    }
+
+    .intensity-btn:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    .intensity-btn.active {
+      background: #000;
+      color: #FFD700;
+    }
+
+    .antics-section {
+      margin-bottom: 20px;
+    }
+
+    .antic-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .antic-item:last-child {
+      border-bottom: none;
+    }
+
+    .antic-info {
+      flex: 1;
+    }
+
+    .antic-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 2px;
+    }
+
+    .antic-desc {
+      font-size: 10px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .antic-toggle {
+      width: 40px;
+      height: 22px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 11px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      position: relative;
+    }
+
+    .antic-toggle.active {
+      background: #000;
+    }
+
+    .antic-toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      background: #FFD700;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    .antic-toggle.active::after {
+      transform: translateX(18px);
+    }
+
+    .summon-btn {
+      width: 100%;
+      padding: 14px;
+      background: #000;
+      color: #FFD700;
+      border: none;
+      font-family: 'Space Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .summon-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .summon-btn:active {
+      transform: scale(0.98);
+    }
+
+    .footer {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 10px;
+      color: rgba(0, 0, 0, 0.4);
+    }
+
+    .footer a {
+      color: rgba(0, 0, 0, 0.6);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">ANTICS</div>
+    <div class="master-toggle active" id="masterToggle"></div>
+  </div>
+
+  <div class="status active" id="status">JESTER SPIRIT: UNLEASHED</div>
+
+  <div class="intensity-section">
+    <div class="section-label">CHAOS INTENSITY</div>
+    <div class="intensity-buttons">
+      <button class="intensity-btn" data-level="mild">MILD</button>
+      <button class="intensity-btn active" data-level="medium">MEDIUM</button>
+      <button class="intensity-btn" data-level="turmoil">TURMOIL</button>
+    </div>
+  </div>
+
+  <div class="antics-section">
+    <div class="section-label">ACTIVE ANTICS</div>
+
+    <div class="antic-item">
+      <div class="antic-info">
+        <div class="antic-name">Confetti Hover</div>
+        <div class="antic-desc">Sparkles follow your cursor</div>
+      </div>
+      <div class="antic-toggle active" data-antic="confettiHover"></div>
+    </div>
+
+    <div class="antic-item">
+      <div class="antic-info">
+        <div class="antic-name">Text Wobble</div>
+        <div class="antic-desc">Words dance when hovered</div>
+      </div>
+      <div class="antic-toggle active" data-antic="textWobble"></div>
+    </div>
+
+    <div class="antic-item">
+      <div class="antic-info">
+        <div class="antic-name">Button Bounce</div>
+        <div class="antic-desc">Buttons get playful on click</div>
+      </div>
+      <div class="antic-toggle active" data-antic="buttonBounce"></div>
+    </div>
+
+    <div class="antic-item">
+      <div class="antic-info">
+        <div class="antic-name">Image Tilt</div>
+        <div class="antic-desc">Images lean toward cursor</div>
+      </div>
+      <div class="antic-toggle" data-antic="imageTilt"></div>
+    </div>
+
+    <div class="antic-item">
+      <div class="antic-info">
+        <div class="antic-name">Feed Shuffle</div>
+        <div class="antic-desc">Randomize content order</div>
+      </div>
+      <div class="antic-toggle" data-antic="feedShuffle"></div>
+    </div>
+  </div>
+
+  <button class="summon-btn" id="summonBtn">SUMMON RANDOM ANTIC</button>
+
+  <div class="footer">
+    <a href="options.html" target="_blank">Settings</a> | v1.0.0
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

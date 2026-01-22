@@ -1,0 +1,79 @@
+/* [ANTICS] Global styles injected by the jester */
+
+/* Confetti canvas layer */
+#antics-confetti-canvas {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+  z-index: 999999 !important;
+}
+
+/* Text wobble animation */
+.antics-wobble {
+  display: inline-block;
+  transition: transform 0.1s ease;
+}
+
+.antics-wobble:hover {
+  animation: antics-wobble-dance 0.3s ease infinite;
+}
+
+@keyframes antics-wobble-dance {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-3deg) scale(1.05); }
+  75% { transform: rotate(3deg) scale(1.05); }
+}
+
+/* Button bounce animation */
+.antics-bounce {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+.antics-bounce:active {
+  transform: scale(0.9) !important;
+}
+
+.antics-bounce.antics-bouncing {
+  animation: antics-bounce-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+@keyframes antics-bounce-pop {
+  0% { transform: scale(1); }
+  30% { transform: scale(0.85); }
+  50% { transform: scale(1.1); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Image tilt effect */
+.antics-tilt {
+  transition: transform 0.15s ease-out !important;
+  transform-style: preserve-3d !important;
+}
+
+/* Undo button (for reversible chaos) */
+.antics-undo-btn {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  background: #000 !important;
+  color: #FFD700 !important;
+  border: none !important;
+  padding: 12px 20px !important;
+  font-family: 'Space Mono', monospace !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  cursor: pointer !important;
+  z-index: 999998 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.antics-undo-btn:hover {
+  transform: scale(1.05) !important;
+}

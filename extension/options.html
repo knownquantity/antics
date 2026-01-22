@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Antics Settings</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #1a1a1a;
+      color: #FFD700;
+      font-family: 'Space Mono', 'Courier New', monospace;
+      min-height: 100vh;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: rgba(255, 215, 0, 0.6);
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: rgba(255, 215, 0, 0.5);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .setting-info {
+      flex: 1;
+      padding-right: 20px;
+    }
+
+    .setting-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .setting-desc {
+      font-size: 12px;
+      color: rgba(255, 215, 0, 0.5);
+      line-height: 1.5;
+    }
+
+    .toggle {
+      width: 50px;
+      height: 26px;
+      background: rgba(255, 215, 0, 0.2);
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .toggle.active {
+      background: #FFD700;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle.active::after {
+      transform: translateX(24px);
+    }
+
+    .domains-section {
+      margin-top: 20px;
+    }
+
+    .domain-list {
+      background: rgba(255, 215, 0, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .domain-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .domain-item:last-child {
+      border-bottom: none;
+    }
+
+    .domain-name {
+      font-size: 13px;
+    }
+
+    .remove-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: rgba(255, 215, 0, 0.6);
+      padding: 4px 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .remove-btn:hover {
+      border-color: #FF6B6B;
+      color: #FF6B6B;
+    }
+
+    .add-domain {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .add-domain input {
+      flex: 1;
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #FFD700;
+      padding: 10px 14px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+    }
+
+    .add-domain input::placeholder {
+      color: rgba(255, 215, 0, 0.4);
+    }
+
+    .add-domain input:focus {
+      outline: none;
+      border-color: #FFD700;
+    }
+
+    .add-btn {
+      background: #FFD700;
+      color: #1a1a1a;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .add-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .save-notice {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FFD700;
+      color: #1a1a1a;
+      padding: 12px 24px;
+      font-weight: 700;
+      border-radius: 4px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    .save-notice.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 215, 0, 0.2);
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 215, 0, 0.4);
+    }
+
+    .footer a {
+      color: rgba(255, 215, 0, 0.6);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #FFD700;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div>
+        <div class="logo">ANTICS</div>
+        <div class="subtitle">Jester Configuration Panel</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">BEHAVIOR</div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">Auto-activate on page load</div>
+          <div class="setting-desc">Automatically apply antics when visiting new pages</div>
+        </div>
+        <div class="toggle active" data-setting="autoActivate"></div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">Respect reduced motion</div>
+          <div class="setting-desc">Disable animations if system prefers reduced motion</div>
+        </div>
+        <div class="toggle active" data-setting="respectReducedMotion"></div>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">Show undo button</div>
+          <div class="setting-desc">Display a floating button to reverse recent antics</div>
+        </div>
+        <div class="toggle" data-setting="showUndoButton"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">EXCLUDED DOMAINS</div>
+      <div class="setting-desc">Antics will not run on these sites (banking, email, etc.)</div>
+
+      <div class="domain-list" id="domainList">
+        <!-- Domains will be populated by JS -->
+      </div>
+
+      <div class="add-domain">
+        <input type="text" id="newDomain" placeholder="example.com">
+        <button class="add-btn" id="addDomainBtn">ADD</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">DATA</div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">Export settings</div>
+          <div class="setting-desc">Download your antics configuration as JSON</div>
+        </div>
+        <button class="add-btn" id="exportBtn">EXPORT</button>
+      </div>
+
+      <div class="setting-item">
+        <div class="setting-info">
+          <div class="setting-name">Reset to defaults</div>
+          <div class="setting-desc">Restore all settings to their original values</div>
+        </div>
+        <button class="remove-btn" id="resetBtn">RESET</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      Made with mischief by the Antics team | <a href="https://uptoantics.vercel.app" target="_blank">uptoantics.vercel.app</a>
+    </div>
+  </div>
+
+  <div class="save-notice" id="saveNotice">Settings saved!</div>
+
+  <script src="options.js"></script>
+</body>
+</html>
